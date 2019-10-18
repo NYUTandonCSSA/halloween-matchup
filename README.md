@@ -1,6 +1,6 @@
 # halloween-matchup
-- $ git clone --depth=1 https://github.com/panteng/wechat-h5-boilerplate.git <your-project-name>
-- $ cd <your-project-name>
+- $ git clone --depth=1 https://github.com/panteng/wechat-h5-boilerplate.git your-project-name
+- $ cd your-project-name
 - $ npm install
 - $ npm install --global gulp-cli
 - $ npm install --save-dev gulp
