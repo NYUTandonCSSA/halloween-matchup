@@ -91,7 +91,7 @@
                     }, 1300, function(){
                         $('#image1').stop(true, true).animate({
                             width: "200%",
-                            marginTop: '30%',
+                            marginTop: '25%',
                             marginLeft: '-50%',
                         }, 2000);
                     });
@@ -145,7 +145,7 @@
                     setVolume(bgMusic, 0.2);
                     playAudio(fireMusic);
                 } else {
-                    if (document.getElementById("slide-5").style.zIndex == "1") {
+                    if (document.getElementById("slide-4").style.zIndex == "1") {
                         setVolume(bgMusic, 0.2);
                         playAudio(horrifyMusic);
                     } else {
