@@ -74,7 +74,6 @@
                 animationControl.playAnimation(swiper);
                 if (document.getElementById("slide-4").style.zIndex == "1") {
                     setVolume(bgMusic, 0.1);
-                    pauseAudio(horrifyMusic);
                     playAudio(fireMusic);
                 }else{
                     pauseAudio(fireMusic);
@@ -83,7 +82,6 @@
                         playAudio(horrifyMusic);
                     } else {
                         setVolume(bgMusic, 1);
-                        pauseAudio(horrifyMusic);
                     }
                 }
                 if (document.getElementById("slide-2").style.zIndex == "1"){
@@ -99,15 +97,14 @@
             onTouchStart: function (swiper, event) {    // mobile devices don't allow audios to play automatically, it has to be triggered by a user event(click / touch).
                 playAudio(bgMusic);
                 if (document.getElementById("slide-3").style.zIndex == "1") {
-                    setVolume(bgMusic, 0.1);
+                    setVolume(bgMusic, 0.2);
                     playAudio(fireMusic);
                 } else {
                     if (document.getElementById("slide-5").style.zIndex == "1") {
-                        setVolume(bgMusic, 0.1);
+                        setVolume(bgMusic, 0.2);
                         playAudio(horrifyMusic);
                     } else {
                         setVolume(bgMusic, 1);
-                        pauseAudio(horrifyMusic);
                         pauseAudio(fireMusic);
                     }
                 }
