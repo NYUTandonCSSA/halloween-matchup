@@ -6,6 +6,9 @@
     var bgMusic = 'bg';
     var fireMusic = 'fire';
     var horrifyMusic = 'horrify';
+    document.getElementById("marquee2").stop();
+    document.getElementById("marquee3").stop();
+    document.getElementById("marquee5").stop();
     
     function playAudio(id) {
         var x = document.getElementById(id);
@@ -82,6 +85,15 @@
                         setVolume(bgMusic, 1);
                         pauseAudio(horrifyMusic);
                     }
+                }
+                if (document.getElementById("slide-2").style.zIndex == "1"){
+                    document.getElementById("marquee2").start();
+                }
+                if (document.getElementById("slide-3").style.zIndex == "1") {
+                    document.getElementById("marquee3").start();
+                }
+                if (document.getElementById("slide-5").style.zIndex == "1") {
+                    document.getElementById("marquee5").start();
                 }
             },
             onTouchStart: function (swiper, event) {    // mobile devices don't allow audios to play automatically, it has to be triggered by a user event(click / touch).
