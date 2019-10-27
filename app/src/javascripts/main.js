@@ -3,24 +3,42 @@
 
     // load dependencies
     var animationControl = require('./animation-control.js');
+    var bgMusic = 'bg';
+    var fireMusic = 'fire';
+    var horrifyMusic = 'horrify';
+    document.getElementById("marquee2").stop();
+    document.getElementById("marquee3").stop();
+    document.getElementById("marquee5").stop();
+    
+    function playAudio(id) {
+        var x = document.getElementById(id);
+        x.play();
+    }
 
+    function pauseAudio(id) {
+        var x = document.getElementById(id);
+        x.pause();
+    }
+
+    function setVolume(id, volumeToBeSet){
+        var x = document.getElementById(id);
+        x.volume = volumeToBeSet;
+    }
 
     $(document).ready(function () {
-        var bgMusic = $('audio').get(0);
         var $btnMusic = $('.btn-music');
         var $upArrow = $('.up-arrow');
-
         // background music control
         $btnMusic.click(function () {
-            if (bgMusic.paused) {
-                bgMusic.play();
+            if ($('#bg').get(0).paused) {
+                playAudio(bgMusic);
                 $(this).removeClass('paused');
             } else {
-                bgMusic.pause();
+                pauseAudio(bgMusic);
                 $(this).addClass('paused');
             }
         });
-
+        var currentActivePage = 1;
         // init Swiper
         new Swiper('.swiper-container', {
             mousewheelControl: true,
@@ -54,10 +72,52 @@
             },
             onTransitionEnd: function (swiper) {       // play animations of the current slide
                 animationControl.playAnimation(swiper);
+                if (document.getElementById("slide-4").style.zIndex == "1") {
+                    setVolume(bgMusic, 0.1);
+                    pauseAudio(horrifyMusic);
+                    playAudio(fireMusic);
+                }else{
+                    pauseAudio(fireMusic);
+                    if (document.getElementById("slide-6").style.zIndex == "1") {
+                        setVolume(bgMusic, 0.1);
+                        playAudio(horrifyMusic);
+                    } else {
+                        setVolume(bgMusic, 1);
+                        pauseAudio(horrifyMusic);
+                    }
+                }
+                if (document.getElementById("slide-2").style.zIndex == "1"){
+                    document.getElementById("marquee2").start();
+                }
+                if (document.getElementById("slide-3").style.zIndex == "1") {
+                    document.getElementById("marquee3").start();
+                }
+                if (document.getElementById("slide-5").style.zIndex == "1") {
+                    document.getElementById("marquee5").start();
+                }
             },
             onTouchStart: function (swiper, event) {    // mobile devices don't allow audios to play automatically, it has to be triggered by a user event(click / touch).
-                if (!$btnMusic.hasClass('paused') && bgMusic.paused) {
-                    bgMusic.play();
+                playAudio(bgMusic);
+                if (document.getElementById("slide-3").style.zIndex == "1") {
+                    setVolume(bgMusic, 0.1);
+                    playAudio(fireMusic);
+                } else {
+                    if (document.getElementById("slide-5").style.zIndex == "1") {
+                        setVolume(bgMusic, 0.1);
+                        playAudio(horrifyMusic);
+                    } else {
+                        setVolume(bgMusic, 1);
+                        pauseAudio(horrifyMusic);
+                        pauseAudio(fireMusic);
+                    }
+                }
+            },
+            onTouchEnd: function(swiper, event){
+                if (document.getElementById("slide-3").style.zIndex == "1"){
+                    pauseAudio(fireMusic);
+                }
+                if (document.getElementById("slide-5").style.zIndex == "1") {
+                    pauseAudio(horrifyMusic);
                 }
             }
         });
